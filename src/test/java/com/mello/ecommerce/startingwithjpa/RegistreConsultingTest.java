@@ -1,9 +1,7 @@
 package com.mello.ecommerce.startingwithjpa;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import com.mello.ecommerce.model.Produit;
+import org.junit.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,4 +33,24 @@ public class RegistreConsultingTest {
     public void tearDown() {
         entityManager.close();
     }
+
+    @Test
+    public void chercherParIdentifiant() {
+        Produit produit = entityManager.find(Produit.class, 1);
+//        Produit produit = entityManager.getReference(Produit.class, 1);
+
+        Assert.assertNotNull(produit);
+        Assert.assertEquals("Kindle", produit.getLibelle());
+    }
+
+    @Test
+    public void mettreAJourLaAReference() {
+        Produit produit = entityManager.find(Produit.class, 1);
+        produit.setLibelle("Microfone Samson");
+
+        entityManager.refresh(produit);
+
+        Assert.assertEquals("Kindle", produit.getLibelle());
+    }
+
 }
