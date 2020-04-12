@@ -10,6 +10,20 @@ import java.math.BigDecimal;
 public class OperationsAvecTransactionTest extends EntityManagerTest {
 
     @Test
+    public void remotionDUnProduit() {
+        Produit produit = entityManager.find(Produit.class, 3);
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(produit);
+        entityManager.getTransaction().commit();
+
+//        entityManager.clear(); Não é necessário na asserção para operação de remoção.
+
+        Produit produitVerification = entityManager.find(Produit.class, 3);
+        Assert.assertNull(produitVerification);
+    }
+
+    @Test
     public void insertionDuPremmierProduit() {
         Produit produit = new Produit();
 
