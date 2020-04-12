@@ -10,7 +10,7 @@ public class Produit {
     @Id
     private Integer id;
 
-    private String libele;
+    private String libelle;
 
     private String description;
 
@@ -24,12 +24,12 @@ public class Produit {
         this.id = id;
     }
 
-    public String getLibele() {
-        return libele;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setLibele(String libele) {
-        this.libele = libele;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public String getDescription() {
