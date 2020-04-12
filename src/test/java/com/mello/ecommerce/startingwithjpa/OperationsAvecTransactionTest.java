@@ -10,7 +10,40 @@ import java.math.BigDecimal;
 public class OperationsAvecTransactionTest extends EntityManagerTest {
 
     @Test
-    public void mettreAJourProduit() {
+    public void insertionDUnProduitAvecMerge() {
+        Produit produit = new Produit();
+
+        produit.setId(4);
+        produit.setLibelle("Microfone Rode Videmic");
+        produit.setDescription("A melhor qualidade de som.");
+        produit.setPrix(new BigDecimal(1000));
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produit);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produit produitVerification = entityManager.find(Produit.class, produit.getId());
+        Assert.assertNotNull(produitVerification);
+    }
+
+    @Test
+    public void miseAJourObjet() {
+        Produit produit = entityManager.find(Produit.class, 1);
+
+        entityManager.getTransaction().begin();
+        produit.setLibelle("Kindle Paperwhite 2ª Geração");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produit produitVerification = entityManager.find(Produit.class, produit.getId());
+        Assert.assertEquals("Kindle Paperwhite 2ª Geração", produitVerification.getLibelle());
+    }
+
+    @Test
+    public void miseAJourProduit() {
         Produit produit = new Produit();
 
         produit.setId(1);
