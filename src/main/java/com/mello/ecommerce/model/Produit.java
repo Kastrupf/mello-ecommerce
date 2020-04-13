@@ -1,12 +1,20 @@
 package com.mello.ecommerce.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Produit {
 
+    @EqualsAndHashCode.Include
     @Id
     private Integer id;
 
@@ -16,51 +24,5 @@ public class Produit {
 
     private BigDecimal prix;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getPrix() {
-        return prix;
-    }
-
-    public void setPrix(BigDecimal prix) {
-        this.prix = prix;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Produit produit = (Produit) o;
-
-        return id.equals(produit.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
 
 }

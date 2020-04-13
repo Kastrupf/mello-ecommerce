@@ -9,6 +9,21 @@ import java.math.BigDecimal;
 
 public class OperationsAvecTransactionTest extends EntityManagerTest {
 
+    /*@Test
+    public void empecherOperationsAvecLaBasedeDonnees() {
+        Produit produit = entityManager.find(Produit.class, 1);
+        entityManager.detach(produit);
+
+        entityManager.getTransaction().begin();
+        produit.setLibelle("Kindle Paperwhite 2ª Geração");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produit produitVerification = entityManager.find(Produit.class, produit.getId());
+        Assert.assertEquals("Kindle", produitVerification.getLibelle());
+    }*/
+
     @Test
     public void insertionDUnProduitAvecMerge() {
         Produit produit = new Produit();
