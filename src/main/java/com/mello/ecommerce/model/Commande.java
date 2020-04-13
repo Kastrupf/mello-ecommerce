@@ -33,4 +33,7 @@ public class Commande {
     @Enumerated(EnumType.STRING)
     private StatusCommande status;
 
+    @Embedded
+    private AdresseDestinataireCommande adresseDestinataire;
+
 }
