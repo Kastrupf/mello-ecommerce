@@ -11,14 +11,15 @@ import javax.persistence.Id;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Client {
+public class ReglementParCarte {
 
     @EqualsAndHashCode.Include
     @Id
     private Integer id;
 
-    private String nom;
+    private Integer CommandeId;
 
-    private SexeClient sexe;
+    private StatusReglement status;
 
+    private String numeroCarte;
 }

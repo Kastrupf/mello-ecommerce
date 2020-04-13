@@ -6,19 +6,25 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Client {
+public class LigneCommande {
 
     @EqualsAndHashCode.Include
     @Id
     private Integer id;
 
-    private String nom;
+    private Integer commandeId;
 
-    private SexeClient sexe;
+    private Integer produitId;
+
+    private BigDecimal prixProduit;
+
+    private Integer quantite;
 
 }
