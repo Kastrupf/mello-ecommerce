@@ -20,11 +20,13 @@ public class LigneCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "commande_id")
-    private Integer commandeId;
+    @ManyToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
 
-    @Column(name = "produit_id")
-    private Integer produitId;
+    @ManyToOne
+    @JoinColumn(name = "produit_id")
+    private Produit produit;
 
     @Column(name = "prix_produit")
     private BigDecimal prixProduit;

@@ -20,6 +20,10 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     @Column(name = "date_commande")
     private LocalDateTime dateCommande;
 
