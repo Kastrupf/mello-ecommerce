@@ -15,6 +15,7 @@ public class ReglementParTitre {
 
     @EqualsAndHashCode.Include
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "commande_id")

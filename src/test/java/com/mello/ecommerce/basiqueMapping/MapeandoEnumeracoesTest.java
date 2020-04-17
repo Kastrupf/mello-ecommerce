@@ -12,7 +12,7 @@ public class MapeandoEnumeracoesTest extends EntityManagerTest {
     @Test
     public void testerEnum() {
         Client client = new Client();
-        client.setId(5);
+//        client.setId(5); Estamos usando IDENTITY
         client.setNom("José Mineiro");
         client.setSexe(SexeClient.MASCUILIN);
 

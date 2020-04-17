@@ -23,7 +23,7 @@ public class MappingEmbedableObjetTest extends EntityManagerTest {
         adresse.setVille("Bordeaux");
 
         Commande commande = new Commande();
-        commande.setId(1);
+//        commande.setId(1);  estamos usando IDENTITY
         commande.setDateCommande(LocalDateTime.now());
         commande.setStatus(StatusCommande.ENATTENTE);
         commande.setMontant(new BigDecimal(1000));
