@@ -28,18 +28,18 @@ public class OperationsAvecTransactionTest extends EntityManagerTest {
     public void insertionDUnProduitAvecMerge() {
         Produit produit = new Produit();
 
-        produit.setId(4);
+//        produit.setId(4);
         produit.setLibelle("Microfone Rode Videmic");
         produit.setDescription("A melhor qualidade de som.");
         produit.setPrix(new BigDecimal(1000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produit);
+        Produit produitSave =entityManager.merge(produit);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        Produit produitVerification = entityManager.find(Produit.class, produit.getId());
+        Produit produitVerification = entityManager.find(Produit.class, produitSave.getId());
         Assert.assertNotNull(produitVerification);
     }
 
@@ -95,7 +95,7 @@ public class OperationsAvecTransactionTest extends EntityManagerTest {
     public void insertionDuPremmierProduit() {
         Produit produit = new Produit();
 
-        produit.setId(2);
+ //       produit.setId(2);
         produit.setLibelle("Câmera Canon");
         produit.setDescription("A melhor definição para suas fotos.");
         produit.setPrix(new BigDecimal(5000));

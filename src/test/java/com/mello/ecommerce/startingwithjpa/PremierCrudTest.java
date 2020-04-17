@@ -5,13 +5,15 @@ import com.mello.ecommerce.model.Client;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 public class PremierCrudTest extends EntityManagerTest {
 
     @Test
     public void insererRegistre() {
         Client client = new Client();
 
-        client.setId(3);
+//       client.setId(3);
         client.setNom("DE ALMEIDA ORLANDO");
 
         entityManager.getTransaction().begin();
@@ -28,10 +30,10 @@ public class PremierCrudTest extends EntityManagerTest {
     public void chercherParIdentifiant() {
         Client client = new Client();
 
-        client.setId(4);
+//        client.setId(4);
         client.setNom("LOYOLA");
 
-        entityManager.find(Client.class, 4);
+        entityManager.find(Client.class, 1);
 
         Assert.assertNotNull(client);
         Assert.assertEquals("LOYOLA", client.getNom());
@@ -42,7 +44,7 @@ public class PremierCrudTest extends EntityManagerTest {
         Client client = new Client();
 
         client.setId(1);
-        client.setNom("PIRES DE MELLO KASTRUP");
+        client.setNom("MENDES");
 
         entityManager.getTransaction().begin();
         entityManager.merge(client);
@@ -51,12 +53,13 @@ public class PremierCrudTest extends EntityManagerTest {
         entityManager.clear();
 
         Client clientVerification = entityManager.find(Client.class, client.getId());
-        Assert.assertEquals("PIRES DE MELLO KASTRUP", clientVerification.getNom());
+        Assert.assertNotNull(clientVerification);
+        Assert.assertEquals("MENDES", clientVerification.getNom());
     }
 
     @Test
     public void removeRegistre() {
-        Client client = entityManager.find(Client.class, 2);
+        Client client = entityManager.find(Client.class, 4);
 
         entityManager.getTransaction().begin();
         entityManager.remove(client);
