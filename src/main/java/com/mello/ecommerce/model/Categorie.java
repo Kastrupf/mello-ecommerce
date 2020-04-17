@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +21,11 @@ public class Categorie {
 
     private String libelle;
 
-    @Column(name = "categorie_pere_id")
-    private Integer CategoriePereId;
+    @ManyToOne
+    @JoinColumn(name = "categorie_pere_id")
+    private Categorie categoriePere;
+
+    @OneToMany (mappedBy = "categoriePere")
+    private List<Categorie> categories;
 
 }
