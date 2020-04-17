@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,6 +35,9 @@ public class Commande {
     private Integer factureId;
 
     private BigDecimal montant;
+
+    @OneToMany (mappedBy = "commande")
+    private List<LigneCommande> ligneCommandes;
 
     @Enumerated(EnumType.STRING)
     private StatusCommande status;

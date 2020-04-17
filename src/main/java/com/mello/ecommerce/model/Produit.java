@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,6 @@ public class Produit {
 
     private BigDecimal prix;
 
+    @OneToMany (mappedBy = "produit")
+    private List<LigneCommande> ligneCommandes;
 }

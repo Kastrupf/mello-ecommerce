@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,6 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private SexeClient sexe;
 
+    @OneToMany (mappedBy = "client") // facultativo
+    private List<Commande> commandes;
 }

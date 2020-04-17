@@ -8,20 +8,20 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RelationManyToOneTest extends EntityManagerTest {
+public class RelationOneToManyTest extends EntityManagerTest {
 
     @Test
-    public void VerificationRelationsLigneDeCommande() {
+    public void verifierRelationCommande() {
         Client client = entityManager.find(Client.class, 1);
         Produit produit = entityManager.find(Produit.class, 1);
 
         Commande commande = new Commande();
-        commande.setStatus(StatusCommande.PAYE);
+        commande.setStatus(StatusCommande.ENATTENTE);
         commande.setDateCommande(LocalDateTime.now());
         commande.setMontant(BigDecimal.TEN);
         commande.setClient(client);
 
-        LigneCommande ligneCommande = new LigneCommande();
+        LigneCommande ligneCommande = new LigneCommande ();
         ligneCommande.setPrixProduit(produit.getPrix());
         ligneCommande.setQuantite(1);
         ligneCommande.setCommande(commande);
@@ -29,15 +29,15 @@ public class RelationManyToOneTest extends EntityManagerTest {
 
         entityManager.getTransaction().begin();
         entityManager.persist(commande);
-        entityManager.persist(ligneCommande);
+        entityManager.persist(ligneCommande );
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        LigneCommande ligneCommandeVerification = entityManager.find (LigneCommande.class, ligneCommande.getId());
-        Assert.assertNotNull(ligneCommandeVerification.getCommande());
-        Assert.assertNotNull(ligneCommandeVerification.getProduit());
+        Commande pedidoVerification = entityManager.find(Commande.class, commande.getId());
+        Assert.assertFalse(pedidoVerification.getLigneCommandes().isEmpty());
     }
+
 
     @Test
     public void verifierRelation() {
@@ -56,8 +56,8 @@ public class RelationManyToOneTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        Commande pedidoVerification = entityManager.find(Commande.class, commande.getId());
-        Assert.assertNotNull(pedidoVerification.getClient());
+        Client clientVerification = entityManager.find(Client.class, client.getId());
+        Assert.assertFalse(clientVerification.getCommandes().isEmpty());
     }
 
 }
