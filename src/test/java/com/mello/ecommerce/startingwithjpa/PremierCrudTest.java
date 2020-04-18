@@ -59,7 +59,7 @@ public class PremierCrudTest extends EntityManagerTest {
 
     @Test
     public void removeRegistre() {
-        Client client = entityManager.find(Client.class, 4);
+        Client client = entityManager.find(Client.class, 2);
 
         entityManager.getTransaction().begin();
         entityManager.remove(client);
