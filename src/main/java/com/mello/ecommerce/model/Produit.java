@@ -28,4 +28,13 @@ public class Produit {
 
     @OneToMany (mappedBy = "produit")
     private List<LigneCommande> ligneCommandes;
+
+    @ManyToMany
+    @JoinTable(name = "produit_categorie",
+            joinColumns = @JoinColumn(name = "produit_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
+    private List<Categorie> categories;
+
+
+
 }

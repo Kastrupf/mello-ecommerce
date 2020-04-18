@@ -7,3 +7,5 @@ insert into client (id, nom) values (2, 'MENDES KASTRUP');
 insert into commande (id, client_id, date_commande, montant, status) values (1, 1, sysdate(), 100.0, 'ANNULE');
 
 insert into ligne_commande (id, commande_id, produit_id, prix_produit, quantite) values (1, 1, 1, 5.0, 2);
+
+insert into categorie (id, libelle) values (1, 'Eletrônicos');
