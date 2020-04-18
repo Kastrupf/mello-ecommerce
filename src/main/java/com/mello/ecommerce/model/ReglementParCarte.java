@@ -18,8 +18,9 @@ public class ReglementParCarte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "commande_id")
-    private Integer CommandeId;
+    @OneToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
 
     @Enumerated(EnumType.STRING)
     private StatusReglement status;

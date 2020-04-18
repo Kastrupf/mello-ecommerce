@@ -31,8 +31,8 @@ public class Commande {
     @Column(name = "date_cloture")
     private LocalDateTime dateCloture;
 
-    @Column(name = "facture_id")
-    private Integer factureId;
+    @OneToOne(mappedBy = "commande")
+    private Facture facture;
 
     private BigDecimal montant;
 
@@ -41,6 +41,9 @@ public class Commande {
 
     @Enumerated(EnumType.STRING)
     private StatusCommande status;
+
+    @OneToOne(mappedBy = "commande")
+    private ReglementParCarte reglement;
 
     @Embedded
     private AdresseDestinataireCommande adresseDestinataire;

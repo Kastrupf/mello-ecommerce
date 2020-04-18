@@ -21,8 +21,9 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "commande_id")
-    private Integer commandeId;
+    @OneToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
 
     private String xml;
 

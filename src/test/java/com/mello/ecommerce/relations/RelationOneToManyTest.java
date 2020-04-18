@@ -34,8 +34,8 @@ public class RelationOneToManyTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        Commande pedidoVerification = entityManager.find(Commande.class, commande.getId());
-        Assert.assertFalse(pedidoVerification.getLigneCommandes().isEmpty());
+        Commande commandeVerification = entityManager.find(Commande.class, commande.getId());
+        Assert.assertFalse(commandeVerification.getLigneCommandes().isEmpty());
     }
 
 
