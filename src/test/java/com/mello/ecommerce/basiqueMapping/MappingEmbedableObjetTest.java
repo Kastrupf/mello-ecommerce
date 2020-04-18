@@ -3,6 +3,7 @@ package com.mello.ecommerce.basiqueMapping;
 
 import com.mello.ecommerce.EntityManagerTest;
 import com.mello.ecommerce.model.AdresseDestinataireCommande;
+import com.mello.ecommerce.model.Client;
 import com.mello.ecommerce.model.Commande;
 import com.mello.ecommerce.model.StatusCommande;
 import org.junit.Assert;
@@ -14,7 +15,9 @@ import java.time.LocalDateTime;
 public class MappingEmbedableObjetTest extends EntityManagerTest {
 
     @Test
-    public void analisarMapeamentoObjetoEmbutido() {
+    public void analiserMappingObjectEmbedable() {
+        Client client = entityManager.find(Client.class, 1);
+
         AdresseDestinataireCommande adresse = new AdresseDestinataireCommande();
         adresse.setNumero("123");
         adresse.setVoie("Rue Saint Louis");
@@ -28,6 +31,7 @@ public class MappingEmbedableObjetTest extends EntityManagerTest {
         commande.setStatus(StatusCommande.ENATTENTE);
         commande.setMontant(new BigDecimal(1000));
         commande.setAdresseDestinataire(adresse);
+        commande.setClient(client);
 
         entityManager.getTransaction().begin();
         entityManager.persist(commande);
