@@ -23,6 +23,9 @@ public class Facture {
 
     @OneToOne
     @JoinColumn(name = "commande_id")
+//    @JoinTable(name = "commande_facture",
+//            joinColumns = @JoinColumn(name = "facture_id", unique = true),
+//            inverseJoinColumns = @JoinColumn(name = "commande_id", unique = true))
     private Commande commande;
 
     private String xml;

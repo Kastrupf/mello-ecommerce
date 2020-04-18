@@ -21,7 +21,7 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY) // o padrão é EAGER (ansioso)
     @JoinColumn(name = "client_id")
     private Client client;
 
@@ -31,7 +31,7 @@ public class Commande {
     @Column(name = "date_cloture")
     private LocalDateTime dateCloture;
 
-    @OneToOne(mappedBy = "commande")
+    @OneToOne(mappedBy = "commande", fetch = FetchType.EAGER) // o padrão é LAZY (preguiçoso)
     private Facture facture;
 
     private BigDecimal montant;
