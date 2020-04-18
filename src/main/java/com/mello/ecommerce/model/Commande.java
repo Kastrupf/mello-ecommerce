@@ -21,7 +21,7 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne (fetch = FetchType.LAZY) // o padrão é EAGER (ansioso)
+    @ManyToOne (fetch = FetchType.LAZY, optional = false) // o padrão é EAGER (ansioso), para forçar o INNER JOIN
     @JoinColumn(name = "client_id")
     private Client client;
 

@@ -21,7 +21,7 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(optional = false) // sempre que eu salvar uma nota fiscal, tenho que ter um pedido
     @JoinColumn(name = "commande_id")
 //    @JoinTable(name = "commande_facture",
 //            joinColumns = @JoinColumn(name = "facture_id", unique = true),

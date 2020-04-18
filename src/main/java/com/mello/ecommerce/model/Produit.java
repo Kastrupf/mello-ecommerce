@@ -35,6 +35,9 @@ public class Produit {
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categories;
 
+    @OneToOne(mappedBy = "produit")
+    private Stock stock;
+
 
 
 }

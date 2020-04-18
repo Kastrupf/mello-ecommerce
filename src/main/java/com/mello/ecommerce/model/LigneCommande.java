@@ -20,11 +20,11 @@ public class LigneCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false) // é obrigatorio salvar a Commande junto
     @JoinColumn(name = "commande_id")
     private Commande commande;
 
-    @ManyToOne
+    @ManyToOne(optional = false)// é obrigatorio salvar o Produto junto
     @JoinColumn(name = "produit_id")
     private Produit produit;
 

@@ -18,8 +18,9 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "produit_id")
-    private Integer produitId;
+    @OneToOne(optional = false) // sempre que eu salvar um estoque, eu quero salvar um produto
+    @JoinColumn(name = "produit_id")
+    private Produit produit;
 
     private Integer quantite;
 

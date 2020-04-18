@@ -18,7 +18,7 @@ public class ReglementParCarte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "commande_id")
     private Commande commande;
 
