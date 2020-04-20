@@ -1,5 +1,6 @@
 package com.mello.ecommerce.model;
 
+import com.mello.ecommerce.listener.GenererFactureListener;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EntityListeners({ GenererFactureListener.class })
 @Entity
 @Table(name = "commande")
 public class Commande {
@@ -50,6 +52,10 @@ public class Commande {
 
     @Embedded
     private AdresseDestinataireCommande adresseDestinataire;
+
+    public boolean isPayed() {
+        return StatusCommande.PAYE.equals(status);
+    }
 
 //    @PrePersist
 //    @PreUpdate
