@@ -28,6 +28,9 @@ public class Commande {
     @Column(name = "date_commande")
     private LocalDateTime dateCommande;
 
+    @Column(name = "date_dernier_mis_a_jour")
+    private LocalDateTime dateDerniereMisAJour;
+
     @Column(name = "date_cloture")
     private LocalDateTime dateCloture;
 
@@ -48,4 +51,48 @@ public class Commande {
     @Embedded
     private AdresseDestinataireCommande adresseDestinataire;
 
+//    @PrePersist
+//    @PreUpdate
+    public void calculerMontant() {
+        if (ligneCommandes != null) {
+            montant = ligneCommandes.stream().map(LigneCommande::getPrixProduit)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+    }
+
+    @PrePersist
+    public void avantPersist() {
+        dateCommande = LocalDateTime.now();
+        calculerMontant();
+    }
+
+    @PreUpdate
+    public void avantLeMisAJour() {
+        dateDerniereMisAJour = LocalDateTime.now();
+        calculerMontant();
+    }
+    @PostPersist
+    public void aposPersistir() {
+        System.out.println("Após persistir Pedido.");
+    }
+
+    @PostUpdate
+    public void aposAtualizar() {
+        System.out.println("Após atualizar Pedido.");
+    }
+
+    @PreRemove
+    public void aoRemover() {
+        System.out.println("Antes de remover Pedido.");
+    }
+
+    @PostRemove
+    public void aposRemover() {
+        System.out.println("Após remover Pedido.");
+    }
+
+    @PostLoad
+    public void aoCarregar() {
+        System.out.println("Após carregar o Pedido.");
+    }
 }

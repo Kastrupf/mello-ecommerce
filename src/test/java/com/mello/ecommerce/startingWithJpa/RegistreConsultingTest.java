@@ -1,4 +1,4 @@
-package com.mello.ecommerce.startingwithjpa;
+package com.mello.ecommerce.startingWithJpa;
 
 import com.mello.ecommerce.EntityManagerTest;
 import com.mello.ecommerce.model.Produit;

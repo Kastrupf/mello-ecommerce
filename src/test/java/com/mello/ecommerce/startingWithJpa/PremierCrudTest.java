@@ -1,11 +1,9 @@
-package com.mello.ecommerce.startingwithjpa;
+package com.mello.ecommerce.startingWithJpa;
 
 import com.mello.ecommerce.EntityManagerTest;
 import com.mello.ecommerce.model.Client;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.math.BigDecimal;
 
 public class PremierCrudTest extends EntityManagerTest {
 
