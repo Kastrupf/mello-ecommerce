@@ -1,6 +1,7 @@
 package com.mello.ecommerce.model;
 
 import com.mello.ecommerce.listener.GenererFactureListener;
+import com.mello.ecommerce.listener.GenericListener;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@EntityListeners({ GenererFactureListener.class })
+@EntityListeners({ GenererFactureListener.class, GenericListener.class })
 @Entity
 @Table(name = "commande")
 public class Commande {
