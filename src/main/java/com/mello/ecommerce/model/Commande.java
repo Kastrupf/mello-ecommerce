@@ -62,8 +62,8 @@ public class Commande {
 //    @PreUpdate
     public void calculerMontant() {
         if (ligneCommandes != null) {
-            montant = ligneCommandes.stream().map(LigneCommande::getPrixProduit)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            montant = ligneCommandes.stream().map(LigneCommande::getPrixProduit).
+                    reduce(BigDecimal.ZERO, BigDecimal::add);
         }
     }
 

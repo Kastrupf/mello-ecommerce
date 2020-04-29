@@ -12,6 +12,8 @@ public class RelationManyToOneTest extends EntityManagerTest {
 
     @Test
     public void VerificationRelationsLigneDeCommande() {
+        entityManager.getTransaction().begin();
+
         Client client = entityManager.find(Client.class, 1);
         Produit produit = entityManager.find(Produit.class, 1);
 
@@ -21,20 +23,26 @@ public class RelationManyToOneTest extends EntityManagerTest {
         commande.setMontant(BigDecimal.TEN);
         commande.setClient(client);
 
+        entityManager.persist(commande);
+
+        entityManager.flush();
+
         LigneCommande ligneCommande = new LigneCommande();
+        ligneCommande.setCommandeId(commande.getId());
+        ligneCommande.setProduitId(produit.getId());
         ligneCommande.setPrixProduit(produit.getPrix());
         ligneCommande.setQuantite(1);
         ligneCommande.setCommande(commande);
         ligneCommande.setProduit(produit);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(commande);
         entityManager.persist(ligneCommande);
+
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        LigneCommande ligneCommandeVerification = entityManager.find (LigneCommande.class, ligneCommande.getId());
+        LigneCommande ligneCommandeVerification = entityManager.find (
+                LigneCommande.class, new LigneCommandeId(commande.getId(), produit.getId()));
         Assert.assertNotNull(ligneCommandeVerification.getCommande());
         Assert.assertNotNull(ligneCommandeVerification.getProduit());
     }
@@ -56,8 +64,8 @@ public class RelationManyToOneTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        Commande pedidoVerification = entityManager.find(Commande.class, commande.getId());
-        Assert.assertNotNull(pedidoVerification.getClient());
+        Commande commandeVerification = entityManager.find(Commande.class, commande.getId());
+        Assert.assertNotNull(commandeVerification.getClient());
     }
 
 }

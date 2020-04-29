@@ -12,6 +12,8 @@ public class RelationOneToManyTest extends EntityManagerTest {
 
     @Test
     public void verifierRelationCommande() {
+        entityManager.getTransaction().begin();
+
         Client client = entityManager.find(Client.class, 1);
         Produit produit = entityManager.find(Produit.class, 1);
 
@@ -21,20 +23,26 @@ public class RelationOneToManyTest extends EntityManagerTest {
         commande.setMontant(BigDecimal.TEN);
         commande.setClient(client);
 
-        LigneCommande ligneCommande = new LigneCommande ();
+        entityManager.persist(commande);
+
+        entityManager.flush();
+
+        LigneCommande ligneCommande = new LigneCommande();
+        ligneCommande.setCommandeId(commande.getId());
+        ligneCommande.setProduitId(produit.getId());
         ligneCommande.setPrixProduit(produit.getPrix());
         ligneCommande.setQuantite(1);
         ligneCommande.setCommande(commande);
         ligneCommande.setProduit(produit);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(commande);
-        entityManager.persist(ligneCommande );
+        entityManager.persist(ligneCommande);
+
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        Commande commandeVerification = entityManager.find(Commande.class, commande.getId());
+        Commande commandeVerification = entityManager.find(
+                Commande.class, commande.getId());
         Assert.assertFalse(commandeVerification.getLigneCommandes().isEmpty());
     }
 
