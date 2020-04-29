@@ -27,8 +27,9 @@ public class CleComposeeTest extends EntityManagerTest {
         entityManager.flush(); // pega o que esta na memoria e sincroniza.
 
         LigneCommande ligneCommande = new LigneCommande();
-        ligneCommande.setCommandeId(commande.getId());
-        ligneCommande.setProduitId(produit.getId());
+//        ligneCommande.setCommandeId(commande.getId()); IdClass
+//        ligneCommande.setProduitId(produit.getId()); IdClass
+        ligneCommande.setId(new LigneCommandeId(commande.getId(), produit.getId()));
         ligneCommande.setCommande(commande);
         ligneCommande.setProduit(produit);
         ligneCommande.setPrixProduit(produit.getPrix());

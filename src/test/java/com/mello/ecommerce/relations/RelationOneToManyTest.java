@@ -28,8 +28,9 @@ public class RelationOneToManyTest extends EntityManagerTest {
         entityManager.flush();
 
         LigneCommande ligneCommande = new LigneCommande();
-        ligneCommande.setCommandeId(commande.getId());
-        ligneCommande.setProduitId(produit.getId());
+//        ligneCommande.setCommandeId(commande.getId());
+//        ligneCommande.setProduitId(produit.getId());
+        ligneCommande.setId(new LigneCommandeId(commande.getId(), produit.getId()));
         ligneCommande.setPrixProduit(produit.getPrix());
         ligneCommande.setQuantite(1);
         ligneCommande.setCommande(commande);

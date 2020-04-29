@@ -11,20 +11,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@IdClass(LigneCommandeId.class)
 @Entity
 @Table(name = "ligne_commande")
 public class LigneCommande {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @Column(name = "commande_id")
-    private Integer commandeId;
-
-    @EqualsAndHashCode.Include
-    @Id
-    @Column(name = "produit_id")
-    private Integer produitId;
+   @EmbeddedId // é um id incorporado
+   private LigneCommandeId id;
 
     @ManyToOne(optional = false) // é obrigatorio salvar a Commande junto
     @JoinColumn(name = "commande_id", insertable = false, updatable = false)
