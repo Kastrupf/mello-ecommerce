@@ -18,9 +18,10 @@ public class Facture {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "commande_id")
     private Integer id;
 
+    @MapsId
     @OneToOne(optional = false) // sempre que eu salvar uma nota fiscal, tenho que ter um pedido
     @JoinColumn(name = "commande_id")
 //    @JoinTable(name = "commande_facture",
